@@ -2,6 +2,7 @@
 const express = require("express");
 const rowdyLogger = require("rowdy-logger");
 const mongoose = require("mongoose");
+const googleRoute = require("./routes/googleAuth");
 const app = express();
 require("dotenv").config();
 
@@ -11,6 +12,8 @@ const PORT = process.env.PORT || 4040;
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 const rowdy = rowdyLogger.begin(app);
+
+app.use("/auth/google", googleRoute);
 
 //connect to database
 const db_URL = process.env.MONGO_URL;

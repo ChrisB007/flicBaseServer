@@ -1,32 +1,39 @@
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
 
-const googleSchema = new Schema({
-  googleId: {
-    type: String,
+const googleSchema = new Schema(
+  {
+    googleId: {
+      type: String,
+    },
+    email: {
+      type: [],
+      required: true,
+      unique: true,
+      max: 50,
+    },
+    userName: {
+      type: String,
+    },
+    profileImage: {
+      type: [],
+    },
+    followers: {
+      type: Array,
+      default: [],
+    },
+    following: {
+      type: Array,
+      default: [],
+    },
+    isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   },
-  email: {
-    type: [],
-    required: true,
-    unique: true,
-    max: 50,
-  },
-  userName: {
-    type: String,
-  },
-  profileImage: {
-    type: [],
-  },
-  followers: {
-    type: Array,
-    default: [],
-  },
-  following: {
-    type: Array,
-    default: [],
-  },
-});
+  { timestamps: true }
+);
 
-const googleUser = mongoose.model("User", googleSchema);
+const googleUsers = mongoose.model("Users", googleSchema);
 
-module.exports = googleUser;
+module.exports = googleUsers;
