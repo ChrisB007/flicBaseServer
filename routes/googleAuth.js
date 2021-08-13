@@ -15,7 +15,7 @@ router.use(
 router.use(passport.initialize());
 router.use(passport.session());
 
-//Passport Login
+//Passport Login starts here
 //Google Auth
 const googleClientID = process.env.GOOGLE_CLIENT_ID;
 const googleClientSecret = process.env.GOOGLE_CLIENT_SECRET;
