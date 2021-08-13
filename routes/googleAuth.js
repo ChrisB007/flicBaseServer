@@ -35,31 +35,28 @@ passport.use(
     {
       clientID: googleClientID,
       clientSecret: googleClientSecret,
-      callbackURL: "/auth/google/callback",
+      callbackURL: "http://localhost:4040/auth/google/callback",
       proxy: true,
     },
-    (accessToken, refreshToken, profile, done) => {
-      googleUser
-        .findOne({
+    async (accessToken, refreshToken, profile, done) => {
+      const existingUser = await googleUser.findOne({
+        googleId: profile.id,
+        userName: profile.displayName,
+        email: profile.emails,
+        profileImage: profile.photos,
+      });
+
+      if (existingUser) {
+        done(null, existingUser);
+      } else {
+        const user = await new googleUser({
           googleId: profile.id,
           userName: profile.displayName,
           email: profile.emails,
           profileImage: profile.photos,
-        })
-        .then((existingUser) => {
-          if (existingUser) {
-            done(null, existingUser);
-          } else {
-            new googleUser({
-              googleId: profile.id,
-              userName: profile.displayName,
-              email: profile.emails,
-              profileImage: profile.photos,
-            })
-              .save()
-              .then((user) => done(null, user)); //Subject to change
-          }
-        });
+        }).save();
+        done(null, user);
+      }
     }
   )
 );
@@ -75,6 +72,10 @@ router.get("/callback", passport.authenticate("google"));
 
 router.get("/logout", (req, res) => {
   req.logout();
+});
+
+router.get("/api/current_user", (req, res) => {
+  res.send(req.user);
 });
 
 module.exports = router;
