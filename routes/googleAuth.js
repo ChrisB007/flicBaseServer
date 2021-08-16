@@ -74,7 +74,7 @@ router.get("/callback", passport.authenticate("google"), (req, res) => {
 
 router.get("/logout", (req, res) => {
   req.logout();
-  res.send("You have successfully logged out");
+  res.redirect("/");
 });
 
 router.get("/api/current_user", (req, res) => {
