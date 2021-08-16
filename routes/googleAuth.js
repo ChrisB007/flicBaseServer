@@ -68,7 +68,9 @@ router.get(
   })
 );
 
-router.get("/callback", passport.authenticate("google"));
+router.get("/callback", passport.authenticate("google"), (req, res) => {
+  res.redirect("/dashboard");
+});
 
 router.get("/logout", (req, res) => {
   req.logout();
