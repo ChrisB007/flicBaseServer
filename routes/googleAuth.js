@@ -3,6 +3,7 @@ const googleUser = require("../models/googleAuthUsers.js");
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth20").Strategy;
 const cookieSession = require("cookie-session");
+const cors = require("cors");
 require("dotenv").config();
 
 //middleware
