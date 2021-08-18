@@ -69,7 +69,7 @@ router.get(
 );
 
 router.get("/callback", passport.authenticate("google"), (req, res) => {
-  res.redirect("/dashboard");
+  res.redirect("https://flicbase.netlify.app/dashboard");
 });
 
 router.get("/logout", (req, res) => {

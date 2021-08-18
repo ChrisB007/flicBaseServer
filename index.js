@@ -20,7 +20,7 @@ app.use(
 app.use(express.urlencoded({ extended: false }));
 const rowdy = rowdyLogger.begin(app);
 
-app.use("/auth/google", googleRoute);
+app.use("https://calm-beyond-30005.herokuapp.com/auth/google", googleRoute);
 
 //connect to database
 const db_URL = process.env.MONGO_URL;
