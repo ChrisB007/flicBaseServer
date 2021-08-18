@@ -11,16 +11,16 @@ const PORT = process.env.PORT || 4040;
 
 //middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-const rowdy = rowdyLogger.begin(app);
-
-app.use("/auth/google", googleRoute);
 app.use(
   cors({
     origin: "*",
     credentials: true,
   })
 );
+app.use(express.urlencoded({ extended: false }));
+const rowdy = rowdyLogger.begin(app);
+
+app.use("/auth/google", googleRoute);
 
 //connect to database
 const db_URL = process.env.MONGO_URL;
