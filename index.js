@@ -13,14 +13,18 @@ const PORT = process.env.PORT || 4040;
 app.use(express.json());
 app.use(
   cors({
-    origin: "*",
+    origin: [
+      "https://flicbase.netlify.app/",
+      "https://flicbase.com",
+      "http://localhost:3000",
+    ],
     credentials: true,
   })
 );
 app.use(express.urlencoded({ extended: false }));
 const rowdy = rowdyLogger.begin(app);
 
-app.use("https://calm-beyond-30005.herokuapp.com/auth/google", googleRoute);
+app.use("/auth/google", googleRoute);
 
 //connect to database
 const db_URL = process.env.MONGO_URL;
