@@ -11,7 +11,7 @@
     "start": "node index.js",
     "backend": "npm run start",
     "client": "cd client && npm start ",
-    "dev": "concurrently \"npm run backend\" \"npm run client\""
+    "dev": "concurrently \"npm run backend\" \"cd ../client && npm start\""
   },
   "author": "",
   "license": "ISC",
