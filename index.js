@@ -45,7 +45,9 @@ mongoose
 //routes
 
 app.get("/", (req, res) => {
-  res.send({ App: "FlicBase" });
+  res.json({
+    message: "You have successfully in the back-land",
+  });
 });
 
 app.listen(PORT, () => {
