@@ -10,7 +10,6 @@
   "scripts": {
     "start": "node index.js"
   },
-  "proxy": "HEROKU_SERVER",
   "author": "",
   "license": "ISC",
   "dependencies": {
