@@ -8,12 +8,16 @@
     "npm": "7.12.0"
   },
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "backend": "npm run start",
+    "client": "cd client && npm start ",
+    "dev": "concurrently \"npm run backend\" \"npm run client\""
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "concurrently": "^6.2.1",
     "cookie-session": "^1.4.0",
     "cors": "^2.8.5",
     "dotenv": "^10.0.0",
