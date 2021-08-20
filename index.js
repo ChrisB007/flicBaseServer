@@ -22,9 +22,8 @@ app.use(
   })
 );
 app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 const rowdy = rowdyLogger.begin(app);
-
-app.use("/auth/google", googleRoute);
 
 //connect to database
 const db_URL = process.env.MONGO_URL;
@@ -43,13 +42,9 @@ mongoose
   });
 
 //routes
+app.use("/auth/google", googleRoute);
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "You have successfully in the back-land",
-  });
-});
-
+//Listen
 app.listen(PORT, () => {
   console.log(`flicBase is listening at port: ${PORT}`);
   rowdy.print();
