@@ -42,9 +42,11 @@ mongoose
   });
 
 //routes
-app.use("auth/google", googleRoute);
+app.use("/auth/google", googleRoute);
 
-app.get("/", (req, res) => {});
+app.get("/", (req, res) => {
+  res.send("Hello from backend");
+});
 
 //Listen
 app.listen(PORT, () => {
