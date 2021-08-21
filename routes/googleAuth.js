@@ -62,22 +62,22 @@ passport.use(
 );
 
 router.get(
-  "/",
+  "api/",
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
 
-router.get("/callback", passport.authenticate("google"), (req, res) => {
+router.get("api/callback", passport.authenticate("google"), (req, res) => {
   res.redirect("/dashboard");
 });
 
-router.get("/logout", (req, res) => {
+router.get("api/logout", (req, res) => {
   req.logout();
   res.redirect("/");
 });
 
-router.get("/current_user", (req, res) => {
+router.get("api/current_user", (req, res) => {
   res.send(req.user);
 });
 
