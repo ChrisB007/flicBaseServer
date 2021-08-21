@@ -42,7 +42,9 @@ mongoose
   });
 
 //routes
-app.use("/auth/google", googleRoute);
+app.use("auth/google", googleRoute);
+
+app.get("/", (req, res) => {});
 
 //Listen
 app.listen(PORT, () => {
